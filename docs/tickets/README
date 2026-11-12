@@ -1,0 +1,67 @@
+# Tickets
+
+Task 04 backlog. Fifteen tickets, each with **Why**, **Done when**, and **Touches**. Numbers are the execution order. Each ticket is one `feature/<slug>` branch and one pull request (`workflow.md`). A ticket is done only when every "Done when" box is ticked on `staging`.
+
+Already done in week 4 (no ticket): project setup, router, S1 list with the closed toggle and nationality filter (R1 code, R4, R5a), `storage.js`, `check-data.js`, and the letter function (R19 code, D12).
+
+For every ticket with UI, "done" also means it works at 375px width and with keyboard only (R22, rules 19 and 20).
+
+## Execution order
+
+| # | Ticket | Priority | Size | Depends on |
+|---|---|---|---|---|
+| 01 | [Connect Netlify and set up staging](01-netlify-staging.md) | Must | S, 1 h | None |
+| 02 | [Letter Assistant: Draft mode](02-letter-draft-mode.md) | Must | M, 3 h | 01 |
+| 03 | [Opportunity Detail screen](03-opportunity-detail.md) | Must | M, 3 h | None |
+| 04 | [Add the first 20 verified opportunities](04-curate-20-opportunities.md) | Must | M, 4 h | None, runs alongside |
+| 05 | [Assistant error messages and privacy notice](05-assistant-errors-privacy.md) | Must | S, 2 h | 02 |
+| 06 | ["Write a letter for this" from the detail screen](06-letter-from-opportunity.md) | Must | S, 1.5 h | 02, 03 |
+| 07 | [Save a letter to My Space, with a basic list](07-save-letter-to-space.md) | Must | M, 3 h | 02 |
+| 08 | [Letter Assistant: Improve mode](08-letter-improve-mode.md) | Must (4th to cut) | M, 3 h | 05 |
+| 09 | [Filters, keyword search, and Clear filters](09-filters-and-search.md) | Must | M, 3 h | None |
+| 10 | [My Space: open, edit, rename, delete, New document](10-space-manage-and-new-document.md) | Must | M, 4 h | 07 |
+| 11 | [Export and import a backup](11-backup-export-import.md) | Must | M, 3 h | 07 |
+| 12 | [About & Privacy screen](12-about-privacy.md) | Must | S, 1.5 h | None |
+| 13 | [Save opportunities to a shortlist](13-shortlist.md) | Should (2nd to cut) | S, 2 h | 03, 07 |
+| 14 | [Sort by deadline](14-sort-by-deadline.md) | Should (3rd to cut) | S, 1 h | 09 |
+| 15 | [Download a single document as .txt](15-download-txt.md) | Should (1st to cut) | S, 1 h | 07 |
+
+Sizes are estimates for planning, not commitments.
+
+## Build next week (week 5)
+
+1. **01 Connect Netlify and set up staging.** Small, and it unblocks testing the assistant on a real URL.
+2. **02 Letter Assistant: Draft mode.** The core differentiator comes first (D10).
+3. **03 Opportunity Detail screen.** Needed before 06 can link letters to opportunities.
+
+Alongside these, add opportunities for **04** in batches of 5 per session.
+
+## Schedule check
+
+The twelve Must tickets add up to about 32 hours. Weeks 5 and 6 give 10 to 16 hours at 5 to 8 hours a week, and `main` freezes for features at the start of week 7. **The Must list doesn't fit by the end of week 6 as planned.** This needs a decision before week 5 ends (see `progress.md`).
+
+## Requirement coverage
+
+| Requirement | Ticket |
+|---|---|
+| R1 | Week 4 code, plus 04 for data |
+| R2, R3 | 09 |
+| R4, R5a | Week 4 (S1), plus 03 for S2 |
+| R5 | 03 |
+| R6 | 14 |
+| R7 | 13 |
+| R8 | 02 |
+| R9 | 08 |
+| R10 | 06 |
+| R11 | 05 |
+| R12 | 07, 10 |
+| R13 | 10 |
+| R14 | 11 |
+| R15 | 15 |
+| R16, R17, R21 | 12 |
+| R18 | 05 |
+| R19 | Week 4 code, plus 01 for the deployed check |
+| R20 | 03, 04 |
+| R22 | Every UI ticket |
+| R23 | 07 |
+
