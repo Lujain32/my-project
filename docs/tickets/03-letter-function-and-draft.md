@@ -1,6 +1,6 @@
 # 03. Letter Assistant: the letter function and Draft mode
 
-**Priority:** Must · **Requirements:** R8, R19, D5, D10, D12, D14, rules 2, 12, 13, 15 · **Depends on:** 01 · **Size:** L (about 5 h)
+**Priority:** Must · **Requirements:** R8, R19, D5, D10, D12, D14, D19, rules 2, 12, 13, 15 · **Depends on:** 01 · **Size:** L (about 5 h)
 
 ## Why
 
@@ -19,7 +19,9 @@ Drafting a letter is the core of the product (D9, D10). Nothing works without th
 
 **The Draft tab**
 
-- [ ] `#/assistant` shows the Draft tab with three labelled inputs: target opportunity, field, and key points about you.
+- [ ] `#/assistant` shows a tab bar with one **Draft** tab, and three labelled inputs, each with a one-line hint: target opportunity (required), field (optional), and key points about you (required) (D19).
+- [ ] The key points hint includes "Don't include ID numbers, phone numbers, or addresses." (D19).
+- [ ] Sending without a field works, and the letter is still generated.
 - [ ] **Generate** is disabled until target opportunity and key points are filled in.
 - [ ] While waiting, the button reads "Writing…", the status line reads "The assistant is writing your letter. This can take up to 10 seconds.", and the inputs keep their text (`design.md`, S3 Loading).
 - [ ] The reply appears in an editable text area within 10 seconds on staging.

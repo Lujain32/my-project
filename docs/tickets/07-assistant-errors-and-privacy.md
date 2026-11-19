@@ -9,7 +9,7 @@ The free tier can be busy or slow, and the 10-second limit means timeouts will h
 ## Done when
 
 - [ ] Before first use, the full privacy notice shows with a **Got it** button. After dismissing it, a short version stays visible on S3. Dismissal is remembered in `sof.v1.prefs` as `assistantNoticeDismissed: true`, via `storage.js`.
-- [ ] Each failure shows its message from design.md (S3 Error): busy, timeout, too long, missing input, offline.
+- [ ] Each failure shows its message from design.md (S3 Error): busy, timeout, too long, missing input, offline. The busy message ends with "Your text is safe." (D19).
 - [ ] After any error, the inputs and any editor text are unchanged.
 - [ ] The browser gives up after 12 seconds even if the function hasn't answered, and shows the timeout message.
 - [ ] Errors are announced to screen readers (`aria-live`).
