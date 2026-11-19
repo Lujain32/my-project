@@ -3,15 +3,15 @@
     "id": "daad-epos-2027",
     "title": "DAAD EPOS Master's Scholarship",
     "provider": "DAAD",
-    "type": "scholarship",
     "level": "masters",
     "fields": ["computer-science", "ai"],
     "funding": "full",
     "country": "Germany",
     "deadline": "2027-01-15",
-    "summary": "Fully funded postgraduate scholarships for international students.",
-    "requirements": ["Bachelor's degree", "IELTS 6.5"],
-    "officialUrl": "https://www.daad.de/",
+    "summary": "Fully funded postgraduate scholarships for international students to study development-related master's programs in Germany.",
+    "requirements": ["Bachelor's degree", "IELTS 6.5", "At least two years of professional experience"],
+    "eligibleNationalities": ["Jordan", "Egypt", "Lebanon", "Palestine", "Iraq", "Sudan", "Yemen"],
+    "officialUrl": "https://www.daad.de/en/the-daad/postgraduate-programmes-epos/",
     "lastVerified": "2026-10-19"
   }
 ]

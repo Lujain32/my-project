@@ -1,6 +1,6 @@
 # Screens
 
-Five screens. Navigation bar on every screen: **Opportunities · Letter Assistant · My Space · About**.
+Five screens. **Three are built for demo night (S1, S3, S4). S2 and S5 are deferred until after the demo (D16).** Navigation bar on every screen: **Opportunities · Letter Assistant · My Space · About**.
 
 ## S1. Opportunities (home)
 
@@ -10,12 +10,12 @@ Five screens. Navigation bar on every screen: **Opportunities · Letter Assistan
 - Filters: field, level (Master's / PhD / Internship / Training), funding (full / partial), country
 - "Clear filters" button, "Show closed" toggle, sort by deadline
 - Result count ("18 opportunities")
-- Cards: title, provider, country, level, funding badge, deadline ("Closes in 12 days"), Save button
+- Cards: title, provider, country, level, funding badge, deadline ("Closes in 12 days"), **Apply on official site** link and "Last verified" date (D16), Save button _(Save deferred, D16)_
 - Empty state: "No opportunities match. Try clearing a filter."
 
 **Requirements:** R1, R2, R3, R4, R6, R7
 
-## S2. Opportunity Detail
+## S2. Opportunity Detail _(deferred, D16)_
 
 **Purpose:** decide whether to apply.
 
@@ -47,6 +47,7 @@ Five screens. Navigation bar on every screen: **Opportunities · Letter Assistan
 **Purpose:** keep every document in one place.
 
 - Banner: "Your documents are saved only in this browser. Export a backup regularly."
+- **New document** button: title, type (Motivation letter, CV text, Other), and text (D17)
 - **Documents** list: title, type, last edited; actions to open, rename, download, delete
 - **Shortlist** section: saved opportunities, each linking to S2
 - **Export backup** and **Import backup** buttons
@@ -54,7 +55,7 @@ Five screens. Navigation bar on every screen: **Opportunities · Letter Assistan
 
 **Requirements:** R12, R13, R14, R15, R7, R23
 
-## S5. About & Privacy
+## S5. About & Privacy _(deferred, D16)_
 
 **Purpose:** build trust and explain how data is handled.
 

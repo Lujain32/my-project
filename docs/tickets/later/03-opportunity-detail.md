@@ -1,6 +1,6 @@
 # 03. Opportunity Detail screen
 
-**Priority:** Must · **Requirements:** R5, R20, R5a · **Depends on:** None · **Size:** M (about 3 h)
+**Priority:** Must · **Requirements:** R5, R20, R5a · **Depends on:** 16 · **Size:** M (about 3 h)
 
 ## Why
 

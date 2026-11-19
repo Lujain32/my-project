@@ -25,6 +25,7 @@ Git, commit, pull request, and environment rules live in `workflow.md`. This fil
 9. Summaries are written in our own words. Never copy paragraphs from the source site.
 10. Update `lastVerified` every time an entry is checked. Recheck all entries at least once every 2 weeks.
 11. `npm run check-data` must pass before any `data:` commit is merged.
+11a. `eligibleNationalities` is copied from the official page, never guessed. Use `["ALL"]` only when the page says the opportunity is open to all nationalities. If the page doesn't say who can apply, don't add the listing. Only add listings that at least one Arab League country can apply to.
 
 ## AI assistant
 

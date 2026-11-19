@@ -1,10 +1,10 @@
-# 09. Filters, keyword search, and Clear filters
+# 06. Filters, keyword search, and Clear filters
 
-**Priority:** Must · **Requirements:** R2, R3 · **Depends on:** None · **Size:** M (about 3 h)
+**Priority:** Must · **Requirements:** R2, R3 · **Depends on:** 02 · **Size:** M (about 3 h)
 
 ## Why
 
-With 20+ listings, students need to narrow by field, level, funding and country to get from hours to minutes, which is the brief's main measure.
+With 10 or more listings, students need to narrow by field, level, funding and country to get from hours to minutes, which is the brief's main measure.
 
 ## Done when
 

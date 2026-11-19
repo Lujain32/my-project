@@ -8,6 +8,20 @@ Rules for this document:
 - Fixed text (labels, notices, help text) and controls listed in `screens.md` are not data, so they don't need a field.
 - Anything a screen needs that `data-model.md` doesn't have is listed under **Open questions** at the end, not invented.
 
+## Demo-night scope (D16)
+
+This document describes the full design, so nothing is lost after the demo. For demo night, only what the eight tickets in `tickets/` build is in scope. When a section below conflicts with this list, this list wins.
+
+| Screen | Built for demo night | Deferred (D16) |
+|---|---|---|
+| S1 Opportunities | List, nationality selector, Show closed, filters, keyword search, Clear filters. Each card also has **Apply on official site ↗** and "Last verified <date>" | Save button (shortlist), sort by deadline. Card titles are plain text, not links |
+| S2 Opportunity Detail | Not built | Whole screen |
+| S3 Letter Assistant | Draft tab, privacy notice, all Error states, **Copy**, **Save to My Space** | Improve tab, `?for=<id>` pre-fill, **Download .txt** |
+| S4 My Space | Storage banner, documents list, **Open** (read only, with Copy and Back), Export and Import backup | New document, edit, Rename, Delete, Download .txt, Shortlist section, "For: <opportunity>" line |
+| S5 About & Privacy | Not built | Whole screen |
+
+The navigation bar for demo night has three items: Opportunities · Letter Assistant · My Space.
+
 ## Data sources at a glance
 
 | Source | Where it lives | Used by |
@@ -30,7 +44,9 @@ Because the opportunity data is bundled and `localStorage` reads are instant, mo
 
 | On screen | Field |
 |---|---|
-| Card title (links to S2) | `Opportunity.title`, link built from `Opportunity.id` |
+| Card title (links to S2; plain text for demo night, D16) | `Opportunity.title`, link built from `Opportunity.id` |
+| Apply on official site ↗ (demo night, D16) | `Opportunity.officialUrl`, opened in a new tab |
+| "Last verified <date>" (demo night, D16) | `Opportunity.lastVerified` |
 | Provider and country line | `Opportunity.provider`, `Opportunity.country` |
 | Level badge | `Opportunity.level` (shown as Master's, PhD, Internship, Training) |
 | Funding badge | `Opportunity.funding` (shown as Fully funded or Partially funded) |
@@ -42,7 +58,7 @@ Because the opportunity data is bundled and `localStorage` reads are instant, mo
 
 | Control | Field |
 |---|---|
-| My nationality selector (default Jordan, remembered) | Reads and writes `Preferences.nationality`; filters on `Opportunity.eligibleNationalities` |
+| My nationality selector (the 22 Arab League countries in alphabetical order, default Jordan, remembered) | Reads and writes `Preferences.nationality`; shows a listing only if `Opportunity.eligibleNationalities` is `["ALL"]` or contains the chosen code (D11) |
 | Field filter | `Opportunity.fields` (fixed list of six values from `data-model.md`) |
 | Level filter | `Opportunity.level` |
 | Funding filter | `Opportunity.funding` |
@@ -69,7 +85,7 @@ Because the opportunity data is bundled and `localStorage` reads are instant, mo
 
 ---
 
-## S2. Opportunity Detail
+## S2. Opportunity Detail _(deferred, D16)_
 
 **Route:** `#/opportunity/<id>` · **Requirements:** R5, R7, R10, R20
 
@@ -117,14 +133,14 @@ Because the opportunity data is bundled and `localStorage` reads are instant, mo
 | On screen | Field |
 |---|---|
 | Pre-filled target (when opened from S2) | `Opportunity.title` and `Opportunity.provider` for the `id` in the URL |
-| Pre-filled field (when opened from S2) | The first value in `Opportunity.fields` *(see Open question 2)* |
+| Pre-filled field (when opened from S2) | The first value in `Opportunity.fields`, which is the main field (D15) |
 | Editor text | Becomes `Document.content` on save |
 | Title asked for on save | `Document.title` (max 100 characters) |
 | Link to the opportunity | `Document.opportunityId`, set to the `id` from the URL. Otherwise `null` |
 | Document type on save | `Document.kind` = `"motivation-letter"` |
 | Saved timestamps | `Document.createdAt`, `Document.updatedAt` (set automatically) |
 
-The Draft inputs (target opportunity, field, key points about you) and the Improve input (the pasted letter) are sent to `/api/letter` and are **not stored**. See Open question 1.
+The Draft inputs (target opportunity, field, key points about you) and the Improve input (the pasted letter) are sent to `/api/letter` and are **not stored** (D14).
 
 ### States
 
@@ -172,6 +188,7 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 | Rename | Writes `Document.title` |
 | Download .txt | `Document.content`, file named after `Document.title` |
 | Delete (with confirmation) | Removes the document by `Document.id` |
+| New document (D17) | Creates a Document from the form: `title`, `kind` (Motivation letter, CV text, Other), `content`. `opportunityId` is `null`, and `createdAt` and `updatedAt` are set automatically |
 
 **Shortlist**
 
@@ -192,7 +209,7 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 
 **Empty.**
 - The storage banner (R23) always shows, empty or not: "Your documents are saved only in this browser. Export a backup regularly."
-- *No documents:* "No documents yet. Start one in the Letter Assistant." with a link to S3.
+- *No documents:* "No documents yet. Start one in the Letter Assistant, or add your CV with New document." with a link to S3 and the **New document** button.
 - *Empty shortlist:* "No saved opportunities yet. Press Save on any opportunity to keep it here." with a link to S1.
 - **Export backup** is disabled when there are no documents and no shortlist items. **Import backup** stays available, since that's how a new browser gets its data back.
 
@@ -203,15 +220,16 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 - *Stored data can't be read (corrupted):* the screen treats it as empty and shows the empty states. Nothing crashes.
 - *Import file isn't a backup* (wrong `app` or `schemaVersion`, or not JSON): "This file isn't a backup from this app." Existing data is unchanged.
 - *Import succeeded:* not an error, but the result is reported: "Imported 3 new documents and updated 1." Or, if nothing changed: "Everything in this file is already here."
+- *New document form incomplete:* **Save** stays disabled until the title and the text are filled in. Leaving the form with unsaved text asks "Leave without saving?"
 - *Saving an edit or rename fails (storage full):* "Your browser storage is full. Export a backup, then delete old documents." The unsaved text stays in the editor.
 - *Shortlisted opportunity no longer exists:* skipped silently, as `data-model.md` specifies.
 - *Linked opportunity no longer exists:* the "For:" line is left out.
 
-**Full.** The banner sits at the top, with **Export backup** and **Import backup** beside it. Then the **Documents** section: one row per document with title, type, and "Edited <date>", plus the "For: <opportunity>" line when linked. Each row has **Open**, **Rename**, **Download .txt**, and **Delete**. Delete asks "Delete '<title>'? This can't be undone." and needs a second press to confirm. Opening a document shows its content in an editor with **Save** and **Back to My Space**. Then the **Shortlist** section: each item shows the title (linking to S2), provider, deadline line, and **Remove**. Closed shortlisted items say "Closed" in text.
+**Full.** The banner sits at the top, with **Export backup** and **Import backup** beside it. Then the **Documents** section, with a **New document** button at the top: one row per document with title, type, and "Edited <date>", plus the "For: <opportunity>" line when linked. Each row has **Open**, **Rename**, **Download .txt**, and **Delete**. Delete asks "Delete '<title>'? This can't be undone." and needs a second press to confirm. Opening a document shows its content in an editor with **Save** and **Back to My Space**. Then the **Shortlist** section: each item shows the title (linking to S2), provider, deadline line, and **Remove**. Closed shortlisted items say "Closed" in text.
 
 ---
 
-## S5. About & Privacy
+## S5. About & Privacy _(deferred, D16)_
 
 **Route:** `#/about` · **Requirements:** R16, R17, R18, R21
 
@@ -239,7 +257,7 @@ This screen is fixed text. It shows no records from `data-model.md`. Its content
 
 ## Shared across all screens
 
-- **Navigation bar:** Opportunities · Letter Assistant · My Space · About. The current screen is marked in bold with an underline and `aria-current`, not by color alone.
+- **Navigation bar:** Opportunities · Letter Assistant · My Space · About (three items for demo night, without About, D16). The current screen is marked in bold with an underline and `aria-current`, not by color alone.
 - **Page not found:** any unknown route shows "Page not found" and a link to Opportunities.
 - **Keyboard and screen readers:** a "Skip to content" link, and focus moves to the main area when the screen changes (rule 20).
 - **Widths:** designed at 375px first, with no horizontal scrolling (R22). Two columns for cards, and side by side for Improve, from about 768px.
@@ -258,7 +276,6 @@ Every field in `data-model.md`, and where it appears:
 | `Opportunity.eligibleNationalities`, `eligibilityNote` | S1 filter, S2 |
 | `Opportunity.officialUrl` | S2 Apply button |
 | `Opportunity.lastVerified` | S2 |
-| `Opportunity.type` | **Not shown anywhere** (see Open question 3) |
 | `Document.id` | S4 actions, import merge |
 | `Document.title`, `kind`, `content`, `opportunityId`, `updatedAt` | S3 save, S4 |
 | `Document.createdAt` | Stored only. Not shown |
@@ -270,7 +287,9 @@ Every field in `data-model.md`, and where it appears:
 
 These need a decision before the backlog is final. Nothing here has been designed around a guess.
 
-1. **Letter inputs aren't in the data model.** S3's Draft inputs (target opportunity, field, key points) are sent to the function and thrown away. If the user leaves the page, they're lost. Should they stay unsaved (current design), or should `data-model.md` gain a field for them?
-2. **Pre-filling "field" from an opportunity.** An opportunity can list several `fields`. S3 currently pre-fills the first one. Is that right, or should the field input be left for the user to fill?
-3. **`Opportunity.type` is never shown.** `level` already covers Master's, PhD, Internship, and Training, so no screen uses `type`. Should it be removed from the data model, or used somewhere (for example, as the S1 filter in place of level)?
-4. **How CV text and "Other" documents get created.** `Document.kind` allows `"cv-text"` and `"other"`, and R12 says users can save "other text documents". But no screen in `screens.md` has a "New document" button, so only motivation letters can be created. Should S4 get a "New document" action, or should `kind` be reduced to motivation letters only?
+All four questions are now decided (D13, D14, D15, D17).
+
+1. **Resolved by D14.** **Letter inputs aren't in the data model.** S3's Draft inputs (target opportunity, field, key points) are sent to the function and thrown away. If the user leaves the page, they're lost. Should they stay unsaved (current design), or should `data-model.md` gain a field for them?
+2. **Resolved by D15.** **Pre-filling "field" from an opportunity.** An opportunity can list several `fields`. S3 currently pre-fills the first one. Is that right, or should the field input be left for the user to fill?
+3. **Resolved by D13: `type` removed.** **`Opportunity.type` is never shown.** `level` already covers Master's, PhD, Internship, and Training, so no screen uses `type`. Should it be removed from the data model, or used somewhere (for example, as the S1 filter in place of level)?
+4. **Resolved by D17.** **How CV text and "Other" documents get created.** `Document.kind` allows `"cv-text"` and `"other"`, and R12 says users can save "other text documents". But no screen in `screens.md` has a "New document" button, so only motivation letters can be created. Should S4 get a "New document" action, or should `kind` be reduced to motivation letters only?
