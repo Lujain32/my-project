@@ -1,6 +1,6 @@
 # 12. About & Privacy screen
 
-**Priority:** Must · **Requirements:** R16, R17, R18, R21 · **Depends on:** None · **Size:** S (about 1.5 h)
+**Priority:** Must · **Requirements:** R16, R17, R18, R21 · **Depends on:** 01 · **Size:** S (about 1.5 h)
 
 ## Why
 

@@ -1,7 +1,7 @@
 # Scope Definition
 
 ## Scope Block (Constraints)
-* **Duration:** 8 weeks (1 session/week + 5–8 hours/week work).
+* **Duration:** 8 weeks (1 session/week + about 9 hours/week work from week 5, raised from 5–8 by D16).
 * **Team:** 1 person building.
 * **Budget:** $0 / Free AI subscription only, no paid third-party APIs or infrastructure.
 * **Delivery:** Live working demo on the final night.

@@ -85,3 +85,148 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 **Decision:** the platform competes on helping students *apply* (letters and documents in one place), not on having more listings.
 **Why:** `research.md` found that Forsa is free, large, and already filters by IT and Computer Science, so listings alone are not a differentiator.
 **Follow-up:** update the Problem section of `brief.md`, which still claims existing sites charge fees.
+
+## D10. The letter assistant is the core of the product, so it is built early
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** the Draft mode of the letter assistant is built straight after the project skeleton and the opportunities list (tickets 01, 02, then 03), before the filters and the rest of My Space.
+
+**Why:**
+- D9 positions the platform on the application side. Forsa already does discovery well, so the assistant is what makes this project worth demoing.
+- The assistant has the most risk: a free-tier API, a server function, rate limits and timeouts. Building it early leaves time to find problems while there is still room to react.
+
+**Rejected alternative:** building every discovery feature first (filters, search, sort). That would make the most polished part of the app the part competitors already do, and leave the riskiest part for the last week.
+
+**Trade-off:** the opportunities list stays basic (no filters or search) for the first build week.
+
+## D11. Filter opportunities by nationality, limited to the 22 Arab League countries
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** the Opportunities screen has a "My nationality" selector offering the 22 Arab League countries, with Jordan as the default. It hides listings the chosen nationality can't apply to. This adds two fields to Opportunity (`eligibleNationalities`, `eligibilityNote`), a new `localStorage` key (`sof.v1.prefs`), and `prefs` in the backup file (`data-model.md`). New requirement R5a and rule 11a.
+
+**Why:**
+- Designing S1 showed that a student can't tell from a card whether they're even allowed to apply. Opening a listing only to find it excludes your nationality is exactly the wasted time the brief describes.
+- The target users are students in Jordan and the Arab region (`brief.md`), so 22 countries cover everyone the platform is for.
+
+**Rejected alternatives:**
+- **No nationality filter.** Simpler, but leaves ineligible listings in front of users, which weakens the "minutes, not hours" goal.
+- **All countries of the world.** A list of about 200 entries is slower to use and harder to keep accurate, for users the brief doesn't target.
+- **Country names as free text** (for example `"Jordan"`). Spelling differences break filtering, so ISO codes are used instead.
+
+**Trade-offs:**
+- Curating each listing takes longer, because eligibility must be read from the official page (ticket 05, about 1 extra hour for 10 listings).
+- Non-Arab users get no useful selector. Accepted, since they are outside the target group.
+- Pages that list eligible countries only in a PDF or a long table will slow curation down.
+
+**Revisit when:** testing shows students from outside the Arab region using the platform.
+
+## D12. The letter function's contract and limits
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** one Netlify Function, `netlify/functions/letter.js`, at `POST /api/letter`.
+
+- **Request:** `{ "mode": "draft" | "improve", "inputs": { ... } }`. Draft inputs are `opportunity`, `field` and `keyPoints`. Improve input is `letter`.
+- **Response:** `{ "text": "..." }` on success. Errors return a status code only, and the browser maps it to a plain message (`Design.md`, S3 Error): 400 missing input, 413 too long, 429 busy or quota used up, 504 timeout.
+- **Limits:** 4,000 characters of input in total (rule 12). The function gives up on Gemini after about 9 seconds, inside Netlify's 10-second limit, and the browser gives up after 12 seconds.
+- **Privacy:** the key is read only from `GEMINI_API_KEY` (R19), and letter content is never logged (rule 15).
+
+**Why:** a small, fixed contract lets the screen and the function be built and tested separately, and each error has exactly one message.
+
+**Rejected alternative:** calling Gemini directly from the browser. It's simpler, but it exposes the API key to anyone who opens the page source (R19).
+
+**Trade-off:** long letters close to 4,000 characters may sometimes hit the timeout on the free tier.
+
+## D13. Remove the `type` field from Opportunity
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** `type` (`scholarship`, `internship`, `training`) is removed from the Opportunity data model. `level` (`masters`, `phd`, `internship`, `training`) is the only field describing what kind of opportunity it is. This answers Open question 3 in `Design.md`.
+
+**Why:**
+- Designing every screen showed that no screen uses `type`. `level` already gives the same information.
+- Two fields saying the same thing can contradict each other (for example `type: "internship"` with `level: "masters"`), and one less field means less to fill in for each of the 20 listings.
+
+**Rejected alternative:** using `type` as a fifth filter on S1. It adds work to the filters ticket (06) for a filter that duplicates the level filter, at a time when the schedule already doesn't fit.
+
+**Trade-off:** a master's scholarship and a master's training course can't be told apart by a field. If that matters later, the field can be added back.
+
+## D14. The assistant's inputs are not saved
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** the Draft inputs (target opportunity, field, key points) and the Improve input (the pasted letter) are sent to `/api/letter` and then discarded. Only the letter the user chooses to save becomes a Document. This answers Open question 1 in `Design.md`.
+
+**Why:**
+- It keeps the data model small: no new entity, no extra storage key.
+- Users decide what is kept. Nothing is saved automatically (rule 14), which matches D1's privacy reasoning.
+
+**Rejected alternative:** saving the inputs as a draft in `localStorage`, so they survive leaving the page. It needs a new field or key and more states to design, for a small benefit.
+
+**Trade-off:** if the user leaves the assistant before generating, the inputs are lost. The inputs are short, so retyping them is a small cost.
+
+## D15. The main field comes first, and the assistant pre-fills it
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** in `opportunities.json`, the first value in `fields` is the opportunity's main field. When the assistant is opened from an opportunity, it pre-fills the field input with that first value. The input stays editable. This answers Open question 2 in `Design.md`.
+
+**Why:** it gives a useful default without adding a new field to the data model, and the rule is easy to follow while curating (ticket 05). The pre-fill itself is deferred with the "Write a letter for this" ticket (D16), but the order rule still applies to curation.
+
+**Rejected alternatives:**
+- Adding a separate `mainField` field. Clearer, but it duplicates what the order of `fields` can already express.
+- Leaving the field input empty. Safer, but it removes most of the benefit of starting a letter from an opportunity (R10).
+
+**Trade-off:** the curator has to remember the order rule. Ticket 05 includes it as a "Done when" check.
+
+## D16. Cut the backlog to eight tickets for demo night, and work about 9 hours a week
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Context:** after the design was finished, the backlog had 16 tickets (one over the limit of 15) and the Must tickets needed about 42 hours. Three build weeks (5, 6 and 7) at 5 to 8 hours a week give 15 to 24 hours. No code existed yet, so the project setup, `storage.js`, `check-data.js` and the letter function were also still to build.
+
+**Decision:** demo night is built around the three steps in `brief.md` (filter opportunities, write a letter with the assistant, save it and find it again), plus the backup that protects saved documents. Eight tickets stay. Eight move to `docs/tickets/later/`. Weekly time goes up from 5–8 hours to about 9 hours, so the backup can stay.
+
+**Kept (about 27.5 hours):** project skeleton and Netlify, the opportunities list with the nationality selector, the letter function and Draft mode, saving and opening a letter, 10 verified opportunities with the data check, filters and search, assistant errors and the privacy notice, and export and import.
+
+**Cut to after the demo:**
+- **Opportunity Detail screen (R5, S2).** The card gets the official link and the "Last verified" date instead, so R20 is still met.
+- **"Write a letter for this" (R10).** Letters are saved with `opportunityId: null` for now.
+- **Improve mode (R9).**
+- **Edit, rename, delete, and New document (R13, D17).** Saved letters can still be opened and read.
+- **About & Privacy screen (R16, R17, R21, S5).** The must-nevers are still met by what isn't built, and R18 is met by the notice on the assistant screen.
+- **Shortlist (R7), sort by deadline (R6), and download as .txt (R15).**
+- **Opportunities reduced from 20 to 10** (R1).
+
+**Why:**
+- Each kept ticket serves one of the brief's three demo steps or protects the brief's promise that no document gets lost. Each cut ticket adds convenience on top of a flow that already works end to end.
+- The backup was kept over a lighter week because local storage (D1) has no other protection against a cleared browser.
+
+**Rejected alternatives:**
+- **Keep the 5–8 hours and cut the search and extra filters instead** (about 26 hours). Rejected: still over the limit, and it weakens demo step 1.
+- **Drop the backup** (about 23.5 hours). Rejected: it breaks the mitigation in D1 and the "no document lost" measure in `brief.md`.
+- **Keep everything and build into week 7's freeze or week 8.** Rejected: week 8 is for testing with students and the demo, and cutting late is failing with extra steps.
+
+**Trade-offs:**
+- About 9 hours a week is above the 5–8 hours in `scope.md`. The plan has no slack.
+- The demo shows a smaller product: three screens instead of five.
+
+**If a week runs over:** the next cut is ticket 06 reduced to the field filter only (about 1.5 hours saved), recorded here with a date before it happens.
+
+**Revisit when:** the eight tickets are merged with time left before the week 7 freeze. Pick up `later/` tickets in the order its README suggests.
+
+## D17. My Space has a "New document" action for CV text and other notes
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Decision:** S4 gets a **New document** button that opens a form with Title, Type (Motivation letter, CV text, Other) and a text box. This answers Open question 4 in `Design.md` and adds the button to `SCREEN.md`. The button itself is deferred to after demo night (D16).
+
+**Why:**
+- The brief's problem is about CVs and letters getting lost, not only letters. Without this, `Document.kind` values `"cv-text"` and `"other"` could never be created, and R12 ("letters and other text documents") couldn't be met.
+- It reuses the existing Document fields, so the data model doesn't change.
+
+**Rejected alternative:** reducing `kind` to motivation letters only. Simpler, but it drops half of the document problem from the brief.
+
+**Trade-off:** CVs are stored as plain text only, not as formatted files (D8).
