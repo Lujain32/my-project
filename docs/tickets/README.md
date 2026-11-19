@@ -39,7 +39,7 @@ Alongside these, start **05** with the check script, then add opportunities in b
 - **Available:** three build weeks (5, 6 and 7) at about 9 hours a week (D16), so about 27 hours.
 - **Week 8:** testing with students, bug fixes, and the demo. No new features.
 
-This is tight, with no slack. If a week runs over, the next cut is **06**, reduced to the field filter only (saves about 1.5 h). The cut goes in `Decisions.md` with a date and a reason before it happens.
+This is tight, with no slack. If a week runs over, the next cut is **06**, reduced to the field filter only (saves about 1.5 h). The cut goes in `decisions.md` with a date and a reason before it happens.
 
 ## Requirement coverage
 

@@ -5,7 +5,7 @@ Every choice is free and fits a JavaScript mentorship track.
 | Layer | Choice | Why | Cost |
 |---|---|---|---|
 | Language | JavaScript (ES modules) | Required by the track, and runs in the browser and in Netlify Functions | Free |
-| UI | Plain HTML, CSS, and JavaScript (no framework) | Five screens don't need React. Fewer tools to learn in 8 weeks | Free |
+| UI | Plain HTML, CSS, and JavaScript (no framework) | Five screens (three for demo night) don't need React. Fewer tools to learn in 8 weeks | Free |
 | Build / dev server | Vite | Fast local server and a simple production build | Free |
 | Styling | Plain CSS with custom properties | No dependency. Mobile-first layout | Free |
 | Data | Static `opportunities.json` in the repo | No database to run or pay for (D2) | Free |
@@ -21,7 +21,7 @@ Every choice is free and fits a JavaScript mentorship track.
 
 Google states that content sent to the Gemini API **free tier** may be used to improve its products and may be read by human reviewers. This applies outside the EEA, Switzerland, and the UK. Paid-tier content is not used this way. That's why R18 requires a visible notice and advises users not to include personal identifiers.
 
-## Things to verify before week 4 ends
+## Things to verify during ticket 01
 
 - [ ] Current Gemini free-tier rate limits for the chosen model (Google doesn't publish them prominently, so check AI Studio)
 - [ ] Netlify free-plan limits for function invocations and build minutes

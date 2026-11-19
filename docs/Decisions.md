@@ -129,7 +129,7 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 **Decision:** one Netlify Function, `netlify/functions/letter.js`, at `POST /api/letter`.
 
 - **Request:** `{ "mode": "draft" | "improve", "inputs": { ... } }`. Draft inputs are `opportunity`, `field` and `keyPoints`. Improve input is `letter`.
-- **Response:** `{ "text": "..." }` on success. Errors return a status code only, and the browser maps it to a plain message (`Design.md`, S3 Error): 400 missing input, 413 too long, 429 busy or quota used up, 504 timeout.
+- **Response:** `{ "text": "..." }` on success. Errors return a status code only, and the browser maps it to a plain message (`design.md`, S3 Error): 400 missing input, 413 too long, 429 busy or quota used up, 504 timeout.
 - **Limits:** 4,000 characters of input in total (rule 12). The function gives up on Gemini after about 9 seconds, inside Netlify's 10-second limit, and the browser gives up after 12 seconds.
 - **Privacy:** the key is read only from `GEMINI_API_KEY` (R19), and letter content is never logged (rule 15).
 
@@ -143,7 +143,7 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 
 **Date:** 19 Nov 2026 · **Status:** Accepted
 
-**Decision:** `type` (`scholarship`, `internship`, `training`) is removed from the Opportunity data model. `level` (`masters`, `phd`, `internship`, `training`) is the only field describing what kind of opportunity it is. This answers Open question 3 in `Design.md`.
+**Decision:** `type` (`scholarship`, `internship`, `training`) is removed from the Opportunity data model. `level` (`masters`, `phd`, `internship`, `training`) is the only field describing what kind of opportunity it is. This answers Open question 3 in `design.md`.
 
 **Why:**
 - Designing every screen showed that no screen uses `type`. `level` already gives the same information.
@@ -157,7 +157,7 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 
 **Date:** 19 Nov 2026 · **Status:** Accepted
 
-**Decision:** the Draft inputs (target opportunity, field, key points) and the Improve input (the pasted letter) are sent to `/api/letter` and then discarded. Only the letter the user chooses to save becomes a Document. This answers Open question 1 in `Design.md`.
+**Decision:** the Draft inputs (target opportunity, field, key points) and the Improve input (the pasted letter) are sent to `/api/letter` and then discarded. Only the letter the user chooses to save becomes a Document. This answers Open question 1 in `design.md`.
 
 **Why:**
 - It keeps the data model small: no new entity, no extra storage key.
@@ -171,7 +171,7 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 
 **Date:** 19 Nov 2026 · **Status:** Accepted
 
-**Decision:** in `opportunities.json`, the first value in `fields` is the opportunity's main field. When the assistant is opened from an opportunity, it pre-fills the field input with that first value. The input stays editable. This answers Open question 2 in `Design.md`.
+**Decision:** in `opportunities.json`, the first value in `fields` is the opportunity's main field. When the assistant is opened from an opportunity, it pre-fills the field input with that first value. The input stays editable. This answers Open question 2 in `design.md`.
 
 **Why:** it gives a useful default without adding a new field to the data model, and the rule is easy to follow while curating (ticket 05). The pre-fill itself is deferred with the "Write a letter for this" ticket (D16), but the order rule still applies to curation.
 
@@ -221,7 +221,7 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 
 **Date:** 19 Nov 2026 · **Status:** Accepted
 
-**Decision:** S4 gets a **New document** button that opens a form with Title, Type (Motivation letter, CV text, Other) and a text box. This answers Open question 4 in `Design.md` and adds the button to `SCREEN.md`. The button itself is deferred to after demo night (D16).
+**Decision:** S4 gets a **New document** button that opens a form with Title, Type (Motivation letter, CV text, Other) and a text box. This answers Open question 4 in `design.md` and adds the button to `SCREEN.md`. The button itself is deferred to after demo night (D16).
 
 **Why:**
 - The brief's problem is about CVs and letters getting lost, not only letters. Without this, `Document.kind` values `"cv-text"` and `"other"` could never be created, and R12 ("letters and other text documents") couldn't be met.

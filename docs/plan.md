@@ -1,69 +1,52 @@
 # Plan
 
-Weeks 1 to 3 covered problem framing, research, rules, and planning documents. Weeks 4 to 8 are for building, testing, and the demo.
+Weeks 1 to 4 covered problem framing, research, rules, planning documents, and the design and backlog (Task 04). Weeks 5 to 7 are for building, and week 8 is for testing and the demo.
 
-Per `workflow.md`, `main` is frozen for features from week 7. All Must features need to be merged by the end of week 6.
+The backlog is the eight tickets in `tickets/` (D16). This plan only says which week each one belongs to. The tickets hold the detail.
 
-## Week 4: Foundations and the opportunity list
+Weekly time: about 9 hours (D16). There is no slack, so check progress at the end of every week.
 
-- [ ] Set up Vite, Netlify, and the folder structure from `rules.md`
-- [ ] Connect GitHub to Netlify and confirm deploy previews work (staging)
-- [ ] Add the first 20 verified opportunities to `opportunities.json`
-- [ ] Write `scripts/check-data.js` (R20)
-- [ ] Build S1: list, cards, hide closed listings (R1, R4)
-- [ ] Talk to 2 or 3 students and time one baseline search session
+## Week 5: The boring one, and the spine starts
 
-**End-of-week check:** the production URL shows 20 real opportunities, with no closed ones visible.
+- [ ] **01** Project skeleton, and Netlify with staging
+- [ ] **02** Opportunities list, with the closed toggle and nationality selector
+- [ ] **03** Letter function and Draft mode (start)
+- [ ] **05** Write `check-data.js`, then add the first 5 opportunities
 
-## Week 5: Filters, detail, and My Space
+**End-of-week check:** the production URL shows the opportunities list with the nationality selector, and `/api/letter` answers on staging.
 
-- [ ] Filters, search, and clear filters (R2, R3)
-- [ ] S2 Opportunity Detail (R5)
-- [ ] `storage.js` with unit tests
-- [ ] S4 My Space: save, list, edit, rename, delete (R12, R13)
-- [ ] Export and import backup (R14), plus the storage reminder (R23)
+## Week 6: Finish the spine
 
-**End-of-week check:** a document saved in one browser can be exported and restored in another.
+- [ ] **03** Letter function and Draft mode (finish)
+- [ ] **04** Save a letter to My Space, and open it again
+- [ ] **06** Filters, keyword search, and Clear filters
+- [ ] **05** Add opportunities 6 to 10
 
-## Week 6: Letter assistant
+**End-of-week check:** the full demo path works on production: filter, draft a letter, save it, and open it again after a reload.
 
-- [ ] Netlify function `letter.js` with input limits and no content logging (R19, rules 12 and 15)
-- [ ] S3 Draft mode (R8) and Improve mode (R9)
-- [ ] Privacy notice (R18) and error handling (R11)
-- [ ] Save from the assistant to My Space
-- [ ] S5 About & Privacy
+## Week 7: States and protection, then the freeze
 
-**End-of-week check:** all Must requirements are merged into `main`.
+- [ ] **07** Assistant error messages and privacy notice
+- [ ] **08** Export and import a backup
+- [ ] Check every "Done when" box in all eight tickets on staging
 
-## Week 7: Feature freeze, testing with students
+**End-of-week check:** all eight tickets are merged into `main`. From here, `main` is frozen for features (`workflow.md`).
 
-- [ ] Test sessions with at least 5 IT/AI students: time their search, watch them draft and save a letter
-- [ ] Check every "done when" line in `requirements.md` and mark each pass or fail
+## Week 8: Testing and demo night
+
+- [ ] Test sessions with at least 5 IT/AI students: time their search, and watch them draft, save and reopen a letter
 - [ ] Fix bugs only (`fix/*` branches)
-- [ ] Recheck every opportunity's deadline and official link
+- [ ] Recheck every opportunity's deadline and official link, and update `lastVerified`
+- [ ] Check the must-nevers: no sign-up, no server storage, no payments or ads, no API key in the page source (R16, R17, R19, R21)
+- [ ] Mobile check at 375px and keyboard-only check (R22)
+- [ ] Prepare the demo script: choose a nationality, filter by field, draft a letter, save it, open it, export a backup
+- [ ] Open the app once with no saved data, to rehearse the empty states
+- [ ] Tag the demo version `v1.0`, and update `progress.md` and `README.md`
 
-## Week 8: Polish and demo night
+## If a week runs over
 
-- [ ] Fix the remaining bugs from testing
-- [ ] Mobile check at 375px (R22) and keyboard-only check
-- [ ] Prepare the demo script: filter, open detail, write a letter, save, export
-- [ ] Tag the demo version `v1.0`
-- [ ] Update `progress.md` and `README.md` (status: complete)
+The next cut is set in D16: ticket **06** reduced to the field filter only, saving about 1.5 hours. Record it in `decisions.md` with a date before it happens.
 
-## Should features
+## After the demo
 
-Build R6 (sort), R7 (shortlist), R10 (letter from opportunity), and R15 (download .txt) only when the week's Must items are done.
-
-## Proposed cut order if behind schedule
-
-Cut from the top first:
-
-1. R15 Download a single letter
-2. R10 Start a letter from an opportunity
-3. R7 Shortlist
-4. R6 Sort by deadline
-5. R9 Improve mode (keep Draft mode only)
-
-The core demo flow (R1 to R5, R8, R11 to R14, and the Must-nevers) is never cut.
-
-_This order is proposed. Confirm it and record it in `brief.md`, risk 7._
+Pick up the tickets in `tickets/later/`, in the order its README suggests.

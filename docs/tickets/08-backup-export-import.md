@@ -8,7 +8,7 @@ Documents live in one browser (D1). Backup is the only protection against cleari
 
 ## Done when
 
-- [ ] `src/storage.js` gains `exportBackup()` and `importBackup(file)`, following the import rules in `Data model.md` (section 5).
+- [ ] `src/storage.js` gains `exportBackup()` and `importBackup(file)`, following the import rules in `data-model.md` (section 5).
 - [ ] **Export backup** downloads one `.json` file with `app`, `schemaVersion`, `exportedAt`, `documents`, `shortlist`, and `prefs` (data-model.md, section 5). `shortlist` is an empty list for demo night, since the shortlist is deferred (D16), but the key is kept so later backups stay compatible.
 - [ ] **Import backup** in a different browser restores everything. Importing the same file twice creates no duplicates.
 - [ ] When the same document exists in both, the later `updatedAt` wins.

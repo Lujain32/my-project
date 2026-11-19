@@ -10,7 +10,7 @@ The demo needs real listings, and every listing must have an official source and
 
 **The check script**
 
-- [ ] `npm run check-data` runs `scripts/check-data.js` and exits with an error, naming the entry, if any required field from `Data model.md` is missing, a date is invalid, an `id` is duplicated, or `eligibleNationalities` is empty, mixes `"ALL"` with codes, or has a code outside the 22 Arab League codes.
+- [ ] `npm run check-data` runs `scripts/check-data.js` and exits with an error, naming the entry, if any required field from `data-model.md` is missing, a date is invalid, an `id` is duplicated, or `eligibleNationalities` is empty, mixes `"ALL"` with codes, or has a code outside the 22 Arab League codes.
 - [ ] It passes on a valid file and fails on a test file with one broken entry of each kind.
 
 **The listings**
