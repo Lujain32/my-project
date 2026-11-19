@@ -4,7 +4,7 @@ A web platform for IT and AI students/graduates to find funded scholarships and 
 
 ## Status
 
-Week 3.
+Week 5.
 
 ## Docs
 
