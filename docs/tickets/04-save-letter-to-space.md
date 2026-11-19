@@ -1,6 +1,6 @@
 # 04. Save a letter to My Space, and open it again
 
-**Priority:** Must · **Requirements:** R12, R13 (open only), R23, D1, D16, rules 1, 14 · **Depends on:** 02, 03 · **Size:** M (about 4.5 h)
+**Priority:** Must · **Requirements:** R12, R13 (open only), R23, D1, D16, D20, rules 1, 14 · **Depends on:** 02, 03 · **Size:** M (about 4.5 h)
 
 ## Why
 
@@ -14,8 +14,10 @@ Losing final versions is one of the two problems in the brief. This is the momen
 - [ ] Saving again from the same editor updates the same document instead of creating a copy.
 - [ ] A confirmation "Saved to My Space" links to S4.
 - [ ] S4 shows the storage banner (R23) and lists documents (title, type, Edited <date>), newest first.
-- [ ] The empty state, the storage-full message, and the storage-blocked message match `design.md` (S4).
-- [ ] **Open** on a document shows its full text with **Copy** and **Back to My Space** (read only; editing, renaming and deleting are deferred, D16).
+- [ ] The heading reads "Documents (N)" with the number of saved documents (D20).
+- [ ] With no documents, the empty state shows "Start your first letter", the line about the Letter Assistant and Import, and an **Open Letter Assistant** button (D20).
+- [ ] The storage-full and storage-blocked messages match `design.md` (S4).
+- [ ] **Open** on a document shows its title, "<type> · Edited <date>", its full text, **Copy**, and **Back to My Space**. There's no Save, and no label saying it's read only (D16, D20).
 - [ ] A saved letter is still listed, and opens with the same text, after closing and reopening the browser.
 - [ ] Nothing is saved automatically (rule 14).
 
