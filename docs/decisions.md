@@ -230,3 +230,22 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 **Rejected alternative:** reducing `kind` to motivation letters only. Simpler, but it drops half of the document problem from the brief.
 
 **Trade-off:** CVs are stored as plain text only, not as formatted files (D8).
+
+## D18. Opportunities screen details decided while designing it
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Context:** building the S1 mockup with the model surfaced choices that no document had made. These are the ones accepted.
+
+**Decisions:**
+- **Platform name: Scholaroo.** Shown on the left of the navigation bar and as the page title. No document named the platform before.
+- **"Closing soon" for deadlines 0 to 10 days away.** The card shows a "Closing soon" badge and the deadline line turns amber. The badge text is what carries the meaning, so color is never the only signal (rule 19). It partly answers the missed-deadlines pain in `brief.md`, which D7 left without alerts.
+- **Card order follows `opportunities.json`.** Sorting is deferred (D16), so the curator controls the order.
+- **Card layout:** level and funding badges at the top, then title, provider and country, then the deadline line, then **Apply on official site ↗** and "Last verified" below a divider. Fully funded is green, partially funded is gray.
+
+**Proposed by the model and accepted:** the 10-day highlight (the number was chosen by the project owner), the badge colors, the card order, and the card layout.
+
+**Rejected alternatives:**
+- **No deadline highlight.** Simpler, but a student scanning the list can miss a listing that closes this week.
+- **Color only for "closing soon".** Fails rule 19 for color-blind users and screen readers.
+

@@ -51,6 +51,8 @@ Because the opportunity data is bundled and `localStorage` reads are instant, mo
 | Level badge | `Opportunity.level` (shown as Master's, PhD, Internship, Training) |
 | Funding badge | `Opportunity.funding` (shown as Fully funded or Partially funded) |
 | Deadline line | `Opportunity.deadline` → "Closes in X days", "Closes today", "Closes tomorrow", "Rolling deadline" if `null`, or "Closed" *(derived)* |
+| "Closing soon" badge and amber deadline line (D18) | Shown when `Opportunity.deadline` is 0 to 10 days away *(derived)*. The badge text carries the meaning, so color is never the only signal (rule 19) |
+| Card order (D18) | The order of entries in `opportunities.json`. No sorting for demo night (D16) |
 | Save button state (Saved / Save) | Whether `Opportunity.id` is in `Shortlist` |
 | Result count | Number of listings after filtering *(derived)* |
 
@@ -81,7 +83,7 @@ Because the opportunity data is bundled and `localStorage` reads are instant, mo
 - *Saved nationality isn't in the list* (for example, an old or edited `Preferences.nationality`): the screen silently falls back to Jordan. No message.
 - *Browser storage blocked* (some private modes): the list still works with the Jordan default. Changing nationality works for the current visit but isn't remembered. Pressing **Save** on a card shows a short message under the button: "Your browser is blocking storage, so saved items can't be kept."
 
-**Full.** Under the heading come the nationality selector, the search box, the four filters, **Clear filters**, **Show closed** and the sort control. Then a count ("18 opportunities") and the cards: one column on phones, two on wider screens. Each card shows the title as a link, provider and country, the level and funding badges, the deadline line, and a **Save** button. Listings this nationality can't apply to never appear. Closed listings appear only when **Show closed** is ticked. Those cards are dimmed and say "Closed" in text, never by color alone (rule 19).
+**Full.** Under the heading come the nationality selector, the search box, the four filters, **Clear filters**, **Show closed** and the sort control. Then a count ("18 opportunities") and the cards: one column on phones, two on wider screens. Each card shows the level and funding badges at the top (Fully funded in green, Partially funded in gray), then the title, provider and country, the deadline line, and, below a divider, **Apply on official site ↗** on the left and "Last verified <date>" on the right. Listings closing within 10 days also show a "Closing soon" badge and an amber deadline line (D18). _(The title link to S2 and the **Save** button are deferred, D16.)_ Listings this nationality can't apply to never appear. Closed listings appear only when **Show closed** is ticked. Those cards are dimmed and say "Closed" in text, never by color alone (rule 19).
 
 ---
 
@@ -257,7 +259,7 @@ This screen is fixed text. It shows no records from `data-model.md`. Its content
 
 ## Shared across all screens
 
-- **Navigation bar:** Opportunities · Letter Assistant · My Space · About (three items for demo night, without About, D16). The current screen is marked in bold with an underline and `aria-current`, not by color alone.
+- **Navigation bar:** the platform name **Scholaroo** on the left (D18), then Opportunities · Letter Assistant · My Space · About (three items for demo night, without About, D16). The current screen is marked in bold with an underline and `aria-current`, not by color alone.
 - **Page not found:** any unknown route shows "Page not found" and a link to Opportunities.
 - **Keyboard and screen readers:** a "Skip to content" link, and focus moves to the main area when the screen changes (rule 20).
 - **Widths:** designed at 375px first, with no horizontal scrolling (R22). Two columns for cards, and side by side for Improve, from about 768px.
