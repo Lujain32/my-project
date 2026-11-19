@@ -148,14 +148,17 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 
 **Empty.** This is the first visit, with nothing typed.
 - Before first use, the privacy notice (R18) appears above the tabs. It says text sent to the assistant goes to a third-party AI service, and not to include ID numbers, phone numbers, or addresses. It has a **Got it** button. After that, a shorter version of the notice stays visible on the screen (rule 18).
-- The **Draft** tab is selected. Its three inputs are empty, each with a label and a one-line hint. **Generate** is disabled until the target opportunity and key points are filled in.
+- The **Draft** tab is selected. For demo night the tab bar has this one tab only, so it's ready for Improve to come back later (D16, D19). Its three inputs are empty, each with a label and a one-line hint. Target opportunity and key points are marked "(required)". Field is optional and has no marker (D19).
+- Layout: target opportunity and field side by side on wide screens (stacked on phones), with key points below them because it's the longest input (D19).
+- Under the key points hint, a second reminder says "Don't include ID numbers, phone numbers, or addresses.", because that's where personal details are most likely to be typed (D19).
+- **Generate** is disabled until the target opportunity and key points are filled in.
 - The editor below shows the placeholder "Your letter will appear here. You can edit it freely."
 - **Save to My Space**, **Copy**, and **Download .txt** are disabled while the editor is empty.
 
 **Loading.** After **Generate** or **Improve**, that button changes to "Writing…" and is disabled. A text status reads "The assistant is writing your letter. This can take up to 10 seconds." Inputs stay visible and keep their text. Any text already in the editor stays visible and isn't replaced until a reply arrives. The other actions are disabled until the reply arrives or fails.
 
 **Error.** Each case has a plain message shown above the editor, and the user's text is never lost (R11):
-- *Busy or quota used up:* "The assistant is busy, try again in a few minutes."
+- *Busy or quota used up:* "The assistant is busy, try again in a few minutes. Your text is safe." (D19)
 - *Timeout (no reply in about 9 seconds):* "The assistant took too long to reply. Please try again."
 - *Too long (over 4,000 characters):* "Your text is too long. Please keep it under 4,000 characters."
 - *Missing input:* "Something is missing. Please fill in the required fields." The missing field is marked in text, not only in color.

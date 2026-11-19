@@ -249,3 +249,22 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 - **No deadline highlight.** Simpler, but a student scanning the list can miss a listing that closes this week.
 - **Color only for "closing soon".** Fails rule 19 for color-blind users and screen readers.
 
+## D19. Letter Assistant details decided while designing it
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Context:** building the S3 mockup surfaced choices that `design.md` and the tickets hadn't made.
+
+**Decisions:**
+- **Field is optional.** Only target opportunity and key points are required to generate. A student who isn't sure how to name their field can still get a letter.
+- **A second personal-data reminder under the key points input**, on top of the notice at the top of the screen (R18). Key points is where a student is most likely to type a phone number or address.
+- **One tab, Draft, in a tab bar.** Improve is deferred (D16), but keeping the bar means Improve can be added back later without changing the layout.
+- **The busy message ends with "Your text is safe."** It tells the user nothing was lost (R11).
+- **Layout:** target opportunity and field side by side on wide screens, key points below them, and a one-line hint under every input.
+
+**Proposed by the model and accepted:** the second reminder, "Your text is safe.", the layout, and the hints. The project owner decided that Field is optional and that the one-tab bar stays.
+
+**Rejected alternatives:**
+- **Field required.** Stricter input, but it blocks students who don't know which label fits, and the letter can be written without it.
+- **No tab bar until Improve returns.** Cleaner today, but it means redesigning the screen when Improve is added.
+
