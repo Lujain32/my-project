@@ -268,3 +268,20 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 - **Field required.** Stricter input, but it blocks students who don't know which label fits, and the letter can be written without it.
 - **No tab bar until Improve returns.** Cleaner today, but it means redesigning the screen when Improve is added.
 
+## D20. My Space details decided while designing it
+
+**Date:** 19 Nov 2026 · **Status:** Accepted
+
+**Context:** building the S4 mockup showed that the empty state in `design.md` pointed to New document, which D16 deferred, and surfaced a few choices no document had made.
+
+**Decisions:**
+- **New empty state.** The heading "Start your first letter", one line saying letters saved in the Letter Assistant appear here and that a backup can be imported, and an **Open Letter Assistant** button. An invitation, not an apology, and it only points to things that exist on demo night.
+- **Document count in the heading**, for example "Documents (3)". Calculated, not stored.
+- **Importing shows only "Importing…" on the button.** No extra status line, as `design.md` already says.
+- **The read-only view has no "read only" label.** It simply has no Save button. A label explaining a cut feature is a note for the developer, not for the user.
+
+**Proposed by the model and accepted:** the new empty-state text and the document count. **Proposed by the model and rejected:** an extra "Reading your backup file…" status line during import, and a "Read only for demo night" label in the document view.
+
+**Rejected alternatives:**
+- **Keep the old empty state.** It told users to use New document, a button that won't exist on demo night.
+

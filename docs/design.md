@@ -189,6 +189,7 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 | Last edited | `Document.updatedAt` (for example "Edited 12 Nov 2026") |
 | "For: <opportunity>" line, when linked | `Document.opportunityId` → `Opportunity.title` |
 | Order | Newest `updatedAt` first |
+| Document count next to the heading, "Documents (3)" (D20) | Number of saved documents *(derived)* |
 | Open / edit | `Document.content` loaded into an editor |
 | Rename | Writes `Document.title` |
 | Download .txt | `Document.content`, file named after `Document.title` |
@@ -214,7 +215,7 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 
 **Empty.**
 - The storage banner (R23) always shows, empty or not: "Your documents are saved only in this browser. Export a backup regularly."
-- *No documents:* "No documents yet. Start one in the Letter Assistant, or add your CV with New document." with a link to S3 and the **New document** button.
+- *No documents:* the heading "Start your first letter", the line "Letters you save in the Letter Assistant appear here. Already have a backup? Import it above.", and an **Open Letter Assistant** button (D20). _(After the demo, when New document returns, the line also mentions adding your CV.)_
 - *Empty shortlist:* "No saved opportunities yet. Press Save on any opportunity to keep it here." with a link to S1.
 - **Export backup** is disabled when there are no documents and no shortlist items. **Import backup** stays available, since that's how a new browser gets its data back.
 
@@ -230,7 +231,7 @@ The Draft inputs (target opportunity, field, key points about you) and the Impro
 - *Shortlisted opportunity no longer exists:* skipped silently, as `data-model.md` specifies.
 - *Linked opportunity no longer exists:* the "For:" line is left out.
 
-**Full.** The banner sits at the top, with **Export backup** and **Import backup** beside it. Then the **Documents** section, with a **New document** button at the top: one row per document with title, type, and "Edited <date>", plus the "For: <opportunity>" line when linked. Each row has **Open**, **Rename**, **Download .txt**, and **Delete**. Delete asks "Delete '<title>'? This can't be undone." and needs a second press to confirm. Opening a document shows its content in an editor with **Save** and **Back to My Space**. Then the **Shortlist** section: each item shows the title (linking to S2), provider, deadline line, and **Remove**. Closed shortlisted items say "Closed" in text.
+**Full.** The banner sits at the top, with **Export backup** and **Import backup** beside it. Then the **Documents** section, headed "Documents (N)" (D20), with a **New document** button at the top _(deferred, D16)_: one row per document with title, type, and "Edited <date>", plus the "For: <opportunity>" line when linked. Each row has **Open**, **Rename**, **Download .txt**, and **Delete**. Delete asks "Delete '<title>'? This can't be undone." and needs a second press to confirm. Opening a document shows its content in an editor with **Save** and **Back to My Space**. _(Demo night, D16 and D20: the document opens read only, showing the title, "<type> · Edited <date>", the full text, **Copy**, and **Back to My Space**. Nothing on the screen says it's read only; there's simply no Save.)_ Then the **Shortlist** section: each item shows the title (linking to S2), provider, deadline line, and **Remove**. Closed shortlisted items say "Closed" in text.
 
 ---
 

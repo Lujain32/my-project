@@ -20,7 +20,8 @@ Last updated: 19 Nov 2026
 | Week-by-week plan (rewritten for the 8 tickets) | `plan.md` |
 | Design of every screen, with all four states | `design.md` |
 | Backlog: 8 tickets for demo night, 8 deferred | `tickets/` |
-| Decisions D10 to D17, including the scope cut (D16) | `decisions.md` |
+| Decisions D10 to D20, including the scope cut (D16) and the screen details from the mockups (D18 to D20) | `decisions.md` |
+| Mockups of S1, S3 and S4, reviewed with the three questions | `design.md`, D18 to D20 |
 
 ## In progress
 
@@ -44,3 +45,4 @@ Add one line per working session: date, what was done, what's next.
 
 - **2 Nov 2026:** wrote all Task 03 planning documents. Next: project setup and the first 10 opportunities.
 - **19 Nov 2026:** Task 04. Designed all five screens with four states each, added the nationality filter (D11), removed `type` (D13), recorded D10 to D17, cut the backlog to 8 tickets (D16), and renamed the docs to lowercase. Next: ticket 01.
+- **19 Nov 2026 (later):** built mockups of S1, S3 and S4, listed what the model decided, and recorded the accepted and rejected choices in D18 to D20. Next: ticket 01.
