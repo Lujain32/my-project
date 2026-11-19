@@ -1,4 +1,4 @@
-# Scholarship & Training Opportunity Finder
+# Scholarship & Training Opportunity Finder (Scholaroo)
 
 A web platform for IT and AI students/graduates to find funded scholarships and internships abroad, with an AI motivation letter assistant and personal document storage.
 
