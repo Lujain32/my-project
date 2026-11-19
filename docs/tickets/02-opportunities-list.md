@@ -16,7 +16,7 @@ This is the spine of the product: open the site and see real opportunities you'r
 - [ ] Only listings whose `eligibleNationalities` is `["ALL"]` or contains the chosen code are shown.
 - [ ] The chosen nationality is still selected after reloading the page (`sof.v1.prefs`). An unknown saved value silently falls back to Jordan.
 - [ ] `src/storage.js` exists with `getPrefs()` and `setPrefs()`. Every read and write is wrapped in `try/catch`, so the list still works when storage is blocked (the choice then lasts for the current visit only).
-- [ ] The empty states match `Design.md` S1: "No opportunities have been added yet." when the file is empty, and "No opportunities match. Try clearing a filter." when the nationality hides everything.
+- [ ] The empty states match `design.md` S1: "No opportunities have been added yet." when the file is empty, and "No opportunities match. Try clearing a filter." when the nationality hides everything.
 - [ ] If `opportunities.json` fails to load, the screen shows "We couldn't load the opportunities. Please refresh the page." instead of a blank page.
 - [ ] Unit tests cover the deadline text, the closed check, and the nationality filter.
 - [ ] One column of cards at 375px and two from about 768px. Works with keyboard only.

@@ -21,7 +21,7 @@ Drafting a letter is the core of the product (D9, D10). Nothing works without th
 
 - [ ] `#/assistant` shows the Draft tab with three labelled inputs: target opportunity, field, and key points about you.
 - [ ] **Generate** is disabled until target opportunity and key points are filled in.
-- [ ] While waiting, the button reads "Writing…", the status line reads "The assistant is writing your letter. This can take up to 10 seconds.", and the inputs keep their text (`Design.md`, S3 Loading).
+- [ ] While waiting, the button reads "Writing…", the status line reads "The assistant is writing your letter. This can take up to 10 seconds.", and the inputs keep their text (`design.md`, S3 Loading).
 - [ ] The reply appears in an editable text area within 10 seconds on staging.
 - [ ] The inputs are not written to `localStorage` (D14).
 - [ ] **Copy** copies the editor text. Copy and Save stay disabled while the editor is empty.

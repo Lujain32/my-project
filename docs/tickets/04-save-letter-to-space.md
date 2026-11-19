@@ -14,7 +14,7 @@ Losing final versions is one of the two problems in the brief. This is the momen
 - [ ] Saving again from the same editor updates the same document instead of creating a copy.
 - [ ] A confirmation "Saved to My Space" links to S4.
 - [ ] S4 shows the storage banner (R23) and lists documents (title, type, Edited <date>), newest first.
-- [ ] The empty state, the storage-full message, and the storage-blocked message match `Design.md` (S4).
+- [ ] The empty state, the storage-full message, and the storage-blocked message match `design.md` (S4).
 - [ ] **Open** on a document shows its full text with **Copy** and **Back to My Space** (read only; editing, renaming and deleting are deferred, D16).
 - [ ] A saved letter is still listed, and opens with the same text, after closing and reopening the browser.
 - [ ] Nothing is saved automatically (rule 14).

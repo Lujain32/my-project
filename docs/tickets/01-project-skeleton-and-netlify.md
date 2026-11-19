@@ -9,8 +9,8 @@ Nothing exists yet. Every later ticket needs a project to add to, a page that lo
 ## Done when
 
 - [ ] `npm run dev` starts the site locally with Vite, and `netlify dev` runs the site and functions together.
-- [ ] The folders from `RULE.md` (rule 5) exist: `/src`, `/data`, `/netlify/functions`, `/scripts`, `/tests`.
-- [ ] `data/Opportunities.JSON` is renamed to `data/opportunities.json`, the name every document uses.
+- [ ] The folders from `rules.md` (rule 5) exist: `/src`, `/data`, `/netlify/functions`, `/scripts`, `/tests`.
+- [ ] The data file is named `data/opportunities.json` (lowercase `.json`), the name every document and the code use.
 - [ ] A hash router shows three placeholder screens at `#/`, `#/assistant`, and `#/space`, each with its heading only (D16: Detail and About are not built for demo night).
 - [ ] Every screen has the navigation bar (Opportunities · Letter Assistant · My Space), and the current screen is marked with bold, an underline and `aria-current`, not by color alone.
 - [ ] Any unknown route shows "Page not found" with a link to Opportunities.
