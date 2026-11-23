@@ -2,6 +2,8 @@
 
 A web platform for IT and AI students/graduates to find funded scholarships and internships abroad, with an AI motivation letter assistant and personal document storage.
 
+**Live site:** https://YOUR-SITE-NAME.netlify.app
+
 ## Status
 
 Week 5.

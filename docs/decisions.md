@@ -285,3 +285,26 @@ Each decision records what was chosen, why, and what it costs. Newest decisions 
 **Rejected alternatives:**
 - **Keep the old empty state.** It told users to use New document, a button that won't exist on demo night.
 
+## D21. Packages and tools for the project skeleton (ticket 01)
+
+**Date:** 23 Nov 2026 · **Status:** Accepted
+
+**Decision:** the project uses two packages, both as development tools only, and one tool installed on the developer's computer.
+
+| Package | Installed as | Why |
+|---|---|---|
+| `vite` | devDependency | Local dev server and the production build (D3, `stack.md`) |
+| `vitest` | devDependency | Runs the unit tests with `npm test` (`stack.md`) |
+| `netlify-cli` | Global, on the developer's computer only (`npm install -g netlify-cli`) | Runs `netlify dev`, so the site and, from ticket 03, the letter function can be tested together locally |
+
+Exact versions are recorded in `package-lock.json`.
+
+**Also decided while planning ticket 01:**
+- **No web fonts.** Text uses the fonts already on the device. Loading Inter from Google Fonts would break rule 16 (no third-party content).
+- **No `vite.config.js`.** Vite's defaults are enough for now.
+
+**Rejected alternatives:**
+- **`netlify-cli` as a devDependency.** It's large (hundreds of megabytes) and isn't needed to build or deploy the site, so it stays off the project.
+- **Deferring `netlify dev` to ticket 03.** Suggested by the model, since no function exists yet. The project owner chose to install it now.
+- **Inter from Google Fonts.** It matches the design system, but sends every visitor's request to Google.
+
