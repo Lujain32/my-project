@@ -6,6 +6,7 @@ import {
   isClosingSoon,
   canApply,
   visibleOpportunities,
+  isSafeUrl,
 } from '../src/lib/opportunities.js';
 
 // A fixed "today", so the tests give the same answer on any day.
@@ -64,5 +65,14 @@ describe('nationality filter', () => {
     const list = [listing('2027-01-15', ['JO']), listing('2026-11-01', ['JO']), listing(null, ['SA'])];
     expect(visibleOpportunities(list, { nationality: 'JO', showClosed: false, today: TODAY })).toHaveLength(1);
     expect(visibleOpportunities(list, { nationality: 'JO', showClosed: true, today: TODAY })).toHaveLength(2);
+  });
+});
+
+describe('official link check', () => {
+  it('accepts https links only', () => {
+    expect(isSafeUrl('https://www.daad.de/')).toBe(true);
+    expect(isSafeUrl('http://example.org/')).toBe(false);
+    expect(isSafeUrl('javascript:alert(1)')).toBe(false);
+    expect(isSafeUrl(undefined)).toBe(false);
   });
 });

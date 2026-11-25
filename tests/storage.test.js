@@ -61,6 +61,12 @@ describe('getPrefs and setPrefs', () => {
     expect(getPrefs().nationality).toBe('JO');
   });
 
+  it('ignores a saved value that is not an object', async () => {
+    vi.stubGlobal('localStorage', fakeStorage({ 'sof.v1.prefs': '"JO"' }));
+    const { getPrefs } = await loadStorage();
+    expect(getPrefs()).toEqual({ nationality: 'JO' });
+  });
+
   it('still works for this visit when storage is blocked', async () => {
     vi.stubGlobal('localStorage', blockedStorage);
     const { getPrefs, setPrefs } = await loadStorage();

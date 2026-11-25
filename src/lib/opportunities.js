@@ -58,6 +58,12 @@ export function visibleOpportunities(opportunities, { nationality, showClosed, t
   );
 }
 
+// Only https:// links are shown. A value like "javascript:..." would
+// run code when clicked, so it never becomes a link.
+export function isSafeUrl(url) {
+  return typeof url === 'string' && url.startsWith('https://');
+}
+
 // "2026-10-19" becomes "19 Oct 2026".
 export function formatDate(text) {
   return parseDate(text).toLocaleDateString('en-GB', {

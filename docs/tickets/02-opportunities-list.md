@@ -29,6 +29,7 @@ This is the spine of the product: open the site and see real opportunities you'r
 - `src/nationalities.js` (new: the 22 codes and their names)
 - `src/storage.js` (new: prefs only)
 - `src/main.js`, `src/screens/placeholders.js`, `src/styles.css`
+- `src/styles/opportunities.css` (new: this screen's styles, so `styles.css` stays under rule 6's 200 lines)
 - `src/router.js` (one import line)
 - `tests/sample.test.js` (one import line)
 - `data/opportunities.json` (nationality names changed to codes)
@@ -43,4 +44,10 @@ This is the spine of the product: open the site and see real opportunities you'r
 - **Two columns from 768px**, as this ticket says. The design canvas shows three on wide screens; the ticket wins.
 - **Only the count and cards redraw** when nationality or Show closed changes, so keyboard focus stays on the control.
 - **No Clear filters button yet.** It arrives with the filters in ticket 06.
+
+## Changes after review (26 Nov 2026)
+
+- **`styles.css` had grown to 376 lines**, breaking rule 6. The screen's styles moved to `src/styles/opportunities.css`.
+- **Only `https://` links are shown** as Apply on official site, so a bad value in the data can't run code.
+- **A saved preference that isn't a plain object is ignored**, instead of being spread into junk keys.
 

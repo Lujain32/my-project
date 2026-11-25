@@ -7,9 +7,16 @@ const PREFS_KEY = 'sof.v1.prefs';
 // so it still works for the current visit.
 let memoryPrefs = null;
 
+// Only a plain object counts as saved preferences. Anything else
+// (a number, a string, a list) is ignored.
+function isPlainObject(value) {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
 function readSavedPrefs() {
   try {
-    return JSON.parse(localStorage.getItem(PREFS_KEY)) ?? {};
+    const saved = JSON.parse(localStorage.getItem(PREFS_KEY));
+    return isPlainObject(saved) ? saved : {};
   } catch {
     // Storage is blocked, or the saved text isn't valid JSON.
     return {};

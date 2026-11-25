@@ -1,3 +1,4 @@
+import '../styles/opportunities.css';
 import opportunities from '../../data/opportunities.json';
 import { NATIONALITIES } from '../nationalities.js';
 import { getPrefs, setPrefs } from '../storage.js';
@@ -7,6 +8,7 @@ import {
   isClosed,
   isClosingSoon,
   formatDate,
+  isSafeUrl,
 } from '../lib/opportunities.js';
 
 const LEVEL_LABELS = {
@@ -49,9 +51,13 @@ function cardHtml(opportunity, today) {
       </div>
       <p class="card__deadline${soon ? ' card__deadline--soon' : ''}">${deadlineText(opportunity, today)}</p>
       <div class="card__foot">
-        <a class="card__link" href="${escapeHtml(opportunity.officialUrl)}" target="_blank" rel="noopener">
+        ${
+          isSafeUrl(opportunity.officialUrl)
+            ? `<a class="card__link" href="${escapeHtml(opportunity.officialUrl)}" target="_blank" rel="noopener">
           Apply on official site <span aria-hidden="true">↗</span><span class="visually-hidden">(opens in a new tab)</span>
-        </a>
+        </a>`
+            : ''
+        }
         <span class="card__verified">Last verified ${formatDate(opportunity.lastVerified)}</span>
       </div>
     </article>
