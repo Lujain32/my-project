@@ -8,8 +8,9 @@ startRouter();
 // The skip link's href is "#main". Letting the browser follow it would change
 // the hash, and the router would show "Page not found". So we stop that and
 // move focus to the main area ourselves.
+// The ?. means: only add the listener if the skip link exists.
 const skipLink = document.querySelector('.skip-link');
-skipLink.addEventListener('click', (event) => {
+skipLink?.addEventListener('click', (event) => {
   event.preventDefault();
   document.getElementById('main').focus();
 });

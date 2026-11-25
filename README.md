@@ -10,7 +10,7 @@ Week 5.
 
 ## Docs
 
-See [`/docs`](./docs). The planning, design and backlog are written, and there is no code yet. Start with [`brief.md`](./docs/brief.md), then [`design.md`](./docs/design.md) and the [tickets](./docs/tickets/README.md).
+See [`/docs`](./docs). The planning, design and backlog are written, and the build has started (ticket 01: project skeleton). Start with [`brief.md`](./docs/brief.md), then [`design.md`](./docs/design.md) and the [tickets](./docs/tickets/README.md).
 
 ## Context
 

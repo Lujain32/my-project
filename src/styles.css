@@ -9,7 +9,7 @@
   --navy-50: #eef3fa;
   --white: #ffffff;
   --slate-600: #5b6b82;
-  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --nav-height: 64px;
   --content-max: 1120px;
 }
