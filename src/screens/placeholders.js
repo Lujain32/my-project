@@ -1,10 +1,6 @@
 // Placeholder screens. Each returns the HTML for the main area.
 // Later tickets replace these with the real screens.
 
-export function opportunitiesScreen() {
-  return '<h1 class="page-title">Opportunities</h1>';
-}
-
 export function assistantScreen() {
   return '<h1 class="page-title">Letter Assistant</h1>';
 }

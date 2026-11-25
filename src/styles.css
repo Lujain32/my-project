@@ -9,6 +9,13 @@
   --navy-50: #eef3fa;
   --white: #ffffff;
   --slate-600: #5b6b82;
+  --navy-200: #c9d6ea;
+  --navy-100: #dce6f4;
+  --control-border: #7a8ba5;
+  --success-50: #e3f4ea;
+  --success-700: #17603a;
+  --warning-50: #fff1db;
+  --warning-700: #8a4b00;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --nav-height: 64px;
   --content-max: 1120px;
@@ -161,4 +168,14 @@ main:focus {
     font-size: 24px;
     line-height: 32px;
   }
+}
+
+/* Hidden on screen, still read by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

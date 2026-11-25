@@ -1,11 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { getPath, matchRoute } from '../src/router.js';
-import {
-  opportunitiesScreen,
-  assistantScreen,
-  spaceScreen,
-  notFoundScreen,
-} from '../src/screens/placeholders.js';
+import { opportunitiesScreen } from '../src/screens/opportunities.js';
+import { assistantScreen, spaceScreen, notFoundScreen } from '../src/screens/placeholders.js';
 
 describe('getPath', () => {
   it('treats an empty hash as the home screen', () => {

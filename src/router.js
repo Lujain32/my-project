@@ -1,9 +1,5 @@
-import {
-  opportunitiesScreen,
-  assistantScreen,
-  spaceScreen,
-  notFoundScreen,
-} from './screens/placeholders.js';
+import { opportunitiesScreen } from './screens/opportunities.js';
+import { assistantScreen, spaceScreen, notFoundScreen } from './screens/placeholders.js';
 
 const routes = {
   '/': opportunitiesScreen,
