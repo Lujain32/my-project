@@ -1,0 +1,164 @@
+/* Colors and sizes from the Scholaroo design system. */
+:root {
+  --navy-900: #0b1b33;
+  --navy-800: #13294b;
+  --navy-700: #1e3a6e;
+  --navy-600: #24467f;
+  --navy-500: #2f5597;
+  --navy-300: #afc3e3;
+  --navy-50: #eef3fa;
+  --white: #ffffff;
+  --slate-600: #5b6b82;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --nav-height: 64px;
+  --content-max: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--navy-50);
+  color: var(--navy-800);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 24px;
+}
+
+/* Skip link: hidden off screen until a keyboard user tabs to it. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 10;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--navy-700);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 16px;
+}
+
+/* Navigation bar */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 24px;
+  min-height: var(--nav-height);
+  padding: 0 24px;
+  background: var(--navy-900);
+}
+
+.nav__brand {
+  display: flex;
+  margin-right: auto;
+}
+
+.nav__logo {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  height: var(--nav-height);
+  padding-top: 3px;
+  border-bottom: 3px solid transparent;
+  color: var(--navy-300);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  color: var(--white);
+}
+
+/* The current screen: white, bold and underlined, never color alone. */
+.nav__link[aria-current="page"] {
+  color: var(--white);
+  font-weight: 600;
+  border-bottom-color: var(--white);
+}
+
+.nav a:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+/* Main area */
+main {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+/* main gets focus from code only; it isn't something you click. */
+main:focus {
+  outline: none;
+}
+
+.page-title {
+  margin: 0 0 16px;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+/* A link styled as the primary button. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--navy-700);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--navy-600);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--navy-500);
+  outline-offset: 2px;
+}
+
+/* Phones: smaller gaps and logo. The links wrap under the logo
+   instead of making the page scroll sideways. */
+@media (max-width: 600px) {
+  .nav {
+    column-gap: 16px;
+    padding: 0 16px;
+  }
+
+  .nav__logo {
+    height: 32px;
+  }
+
+  .nav__link {
+    height: 48px;
+    font-size: 13px;
+  }
+
+  main {
+    padding: 24px 16px 32px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
