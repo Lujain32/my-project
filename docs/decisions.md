@@ -308,3 +308,21 @@ Exact versions are recorded in `package-lock.json`.
 - **Deferring `netlify dev` to ticket 03.** Suggested by the model, since no function exists yet. The project owner chose to install it now.
 - **Inter from Google Fonts.** It matches the design system, but sends every visitor's request to Google.
 
+## D22. Protect Netlify's free credits
+
+**Date:** 25 Nov 2026 · **Status:** Accepted
+
+**Context:** while connecting Netlify for ticket 01, the dashboard showed the free plan's credits used up for the cycle 12 Nov to 11 Dec. The free plan gives 300 credits a month, and each successful production deploy costs 15, so about 20 production deploys a month. The site had been linked to the repo since 19 Nov, so every file upload straight to `main` was a production deploy. Deploy previews cost nothing.
+
+**Decision:**
+- **Nothing is committed to `main` directly**, docs included (already in `workflow.md`). Every change reaches `main` through a pull request.
+- **Docs changes travel in the pull request of the ticket they belong to**, so each merge is one production deploy, not several.
+- **Until 12 Dec 2026, tickets are tested and merged on their deploy previews.** `scholaroo.netlify.app` updates once credits reset.
+
+**Rejected alternatives:**
+- **Skip builds when only docs change**, with an `ignore` command in `netlify.toml`. It would save more credits, but the git command is hard to explain and its behavior on a first build is uncertain. Revisit if credits run short again.
+- **Delete and recreate the Netlify project.** Credits belong to the account, not the project, so it wouldn't help.
+- **A paid plan.** Breaks the zero-cost constraint.
+
+**Watch:** before demo night, check that enough credits are left for the final deploy. If not, demo from the latest deploy preview.
+

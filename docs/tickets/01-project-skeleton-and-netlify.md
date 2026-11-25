@@ -17,7 +17,8 @@ Nothing exists yet. Every later ticket needs a project to add to, a page that lo
 - [ ] Any unknown route shows "Page not found" with a link to Opportunities.
 - [ ] A "Skip to content" link exists, and focus moves to the main area when the screen changes.
 - [ ] Nothing is loaded from another site: no web fonts, scripts or images from outside the project (rule 16). Text uses the fonts already on the device.
-- [ ] The repo is connected to Netlify, `main` deploys to the production URL, and opening a pull request creates a deploy preview (staging).
+- [ ] The repo is connected to Netlify, and opening a pull request creates a deploy preview (staging).
+- [ ] `main` deploys to the production URL. _Blocked until 12 Dec 2026: the free plan's credits for the cycle 12 Nov to 11 Dec are used up, so Netlify has paused production deploys. Deploy previews still work (D22)._
 - [ ] `.env` is in `.gitignore`, and `GEMINI_API_KEY` is set in Netlify's environment variables with a different key from the local one.
 - [ ] Vitest runs with `npm test` (one sample test passes).
 - [ ] The production URL is added to `README.md`.
@@ -32,7 +33,7 @@ Nothing exists yet. Every later ticket needs a project to add to, a page that lo
 - `scripts/.gitkeep`, `netlify/functions/.gitkeep` (new, empty)
 - `tests/sample.test.js` (new)
 - `README.md`
-- `docs/decisions.md` (D21)
+- `docs/decisions.md` (D21, D22)
 - Netlify dashboard (no code)
 
 ## Answers to questions raised while planning (23 Nov 2026)
@@ -43,3 +44,4 @@ Nothing exists yet. Every later ticket needs a project to add to, a page that lo
 - **No web fonts.** The design system names Inter from Google Fonts, but rule 16 forbids third-party content, so text uses the device's own fonts.
 - **`netlify-cli` is installed on the developer's computer only** (`npm install -g netlify-cli`), not inside the project (D21).
 - **`package-lock.json`** is added: `npm install` creates it, and it records the exact package versions.
+- **Production deploys are paused until 12 Dec 2026** (found while connecting Netlify on 23 Nov). The ticket is merged on its deploy preview; the production check is done once credits reset (D22).
