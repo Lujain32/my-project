@@ -56,8 +56,6 @@ Add one line per working session: date, what was done, what's next.
 
 ## What the model got wrong this week, and how I caught it
 
-_Write this in your own words. These are the facts to work from._
-
 1. **The skip link could stop the whole site** (ticket 01). The model's code attached the skip link's click handler before starting the router, so a missing skip link would have stopped every screen. I caught it in the third reading pass ("which line breaks first?") and sent it back.
 2. **The model overstated its own fix** (ticket 01). Its PR description said moving the router "fixed" the skip-link problem, but the error still happened. The fresh-chat review caught it, not me and not the chat that wrote it.
 3. **The model broke a rule we wrote** (ticket 02). It grew `styles.css` to 376 lines, against rule 6 (about 200 lines). The tests passed and the screen worked, so only the fresh-chat review caught it, with "request changes".
